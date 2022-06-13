@@ -12,14 +12,12 @@ inputEl.addEventListener('input', Debounce(onInputCountrySearch, DEBOUNCE_DELAY)
 
 function onInputCountrySearch(e) {
   const searchCountry = e.target.value.trim();
-  // console.log(searchCountry);
   listEl.innerHTML = '';
   infoDivEl.innerHTML = '';
 
   if (searchCountry !== '') {
     fetchCountries(searchCountry)
       .then(response => {
-        // console.log(response);
         if (response.length === 1) {
           infoDivEl.insertAdjacentHTML('beforeend', renderCountriesInfo(response));
         } else if (response.length > 10) {
@@ -51,16 +49,16 @@ function renderCountriesInfo(array) {
         <img class="country-info__img" src="${flags.svg}" alt="flag of ${name}" width="25" height="25">
         <h2 class="country-info__title">${name.official}</h2>
     </div>
-    <ul class="country-info__list">
-        <li class="country-info__item">Capital:
+    <div class="country-info__list">
+        <p class="country-info__item">Capital:
             <span class="country-info__item-text">${capital}</span>
-        </li>
-        <li class="country-info__item">Population:
+        </p>
+        <p class="country-info__item">Population:
             <span class="country-info__item-text">${population}</span>
-        </li>
-        <li class="country-info__item">Languages:
+        </p>
+        <p class="country-info__item">Languages:
             <span class="country-info__item-text">${Object.values(languages)}</span>
-        </li>
-    </ul>
+        </p>
+    </div>
 `).join('');
 };
