@@ -19,10 +19,12 @@ function onInputCountrySearch(e) {
     fetchCountries(searchCountry)
       .then(response => {
         if (response.length === 1) {
+          infoDivEl.innerHTML = '';
           infoDivEl.insertAdjacentHTML('beforeend', renderCountriesInfo(response));
         } else if (response.length > 10) {
           Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
         } else {
+          listEl.innerHTML = '';
           listEl.insertAdjacentHTML('beforeend', renderCountriesList(response));
         }
       })  
